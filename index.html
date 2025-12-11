@@ -98,7 +98,7 @@
       <!-- Butoanele vor fi generate din JavaScript -->
     </div>
 
-    
+ 
   </div>
 
   <script>
@@ -112,10 +112,19 @@
       btn.className = "lab-btn";
       btn.textContent = "Laboratorul " + i;
 
-      // La click, mergi în folderul laboratorului
+      // Pentru lab 1-8: doar folderul
+      // Pentru lab 9-12: folder + index.php
       const folderName = "laboratorul_" + i + "/";
+      let targetUrl;
+
+      if ( i >= 9 && i <= 12 ) {
+        targetUrl = folderName + "index.php";
+      } else {
+        targetUrl = folderName;
+      }
+
       btn.addEventListener("click", () => {
-        window.location.href = folderName;
+        window.location.href = targetUrl;
       });
 
       container.appendChild(btn);
