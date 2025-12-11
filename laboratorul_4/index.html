@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Matrice - Diagonala principală</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 300px;
+            height: 120px;
+        }
+        button {
+            margin-top: 10px;
+        }
+        .rezultat {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        td {
+            border: 1px solid #333;
+            padding: 4px 8px;
+            text-align: center;
+        }
+        .diag {
+            background-color: #ffeb3b;
+        }
+    </style>
+</head>
+<body>
+    <h2>Afisare elemente diagonala principală a unei matrice A(m, n)</h2>
+
+    <p>Introdu matricea (numere întregi) linie cu linie, elementele separate prin spațiu:</p>
+    <pre>Exemplu:
+1 2 3
+4 5 6
+7 8 9
+    </pre>
+
+    <textarea id="matInput" placeholder="Scrie matricea aici..."></textarea><br>
+    <button onclick="afiseazaDiagonala()">Afișează diagonala principală</button>
+
+    <div class="rezultat" id="diagOutput"></div>
+    <div id="tableContainer"></div>
+
+    <script>
+        function afiseazaDiagonala() {
+            const text = document.getElementById('matInput').value.trim();
+            const diagDiv = document.getElementById('diagOutput');
+            const tableContainer = document.getElementById('tableContainer');
+            diagDiv.textContent = '';
+            tableContainer.innerHTML = '';
+
+            if (!text) {
+                diagDiv.textContent = 'Introduceți matricea.';
+                return;
+            }
+
+            // Construim matricea A(m, n)
+            const rows = text.split('\n').map(r => r.trim()).filter(r => r.length > 0);
+            const A = rows.map(r => r.split(/\s+/).map(Number));
+
+            // Verificare că toate liniile au același număr de coloane
+            const n = A[0].length;
+            for (let i = 1; i < A.length; i++) {
+                if (A[i].length !== n || A[i].some(isNaN)) {
+                    diagDiv.textContent = 'Matrice invalidă (nr. inegal de coloane sau valori ne-numerice).';
+                    return;
+                }
+            }
+
+            const m = A.length;
+            const minDim = Math.min(m, n);
+            const diag = [];
+            for (let i = 0; i < minDim; i++) {
+                diag.push(A[i][i]);
+            }
+
+            diagDiv.textContent = 'Elementele diagonalei principale: ' + diag.join(', ');
+
+            // Afișare matricea într-un tabel, evidențiind diagonala
+            const table = document.createElement('table');
+            for (let i = 0; i < m; i++) {
+                const tr = document.createElement('tr');
+                for (let j = 0; j < n; j++) {
+                    const td = document.createElement('td');
+                    td.textContent = A[i][j];
+                    if (i === j) {
+                        td.classList.add('diag');
+                    }
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+            tableContainer.appendChild(table);
+        }
+    </script>
+</body>
+</html>

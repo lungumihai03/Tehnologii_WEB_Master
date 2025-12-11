@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>A câta zi din an este?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 6px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 6px 8px;
+            margin-bottom: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 10px;
+            width: 100%;
+            padding: 8px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #rezultat {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .eroare {
+            color: #b00000;
+        }
+    </style>
+</head>
+<body>
+    <h1>A câta zi din an este?</h1>
+    <div class="container">
+        <label for="zi">Zi:</label>
+        <input type="number" id="zi" min="1" max="31" placeholder="Ex: 15">
+
+        <label for="luna">Luna (1-12):</label>
+        <input type="number" id="luna" min="1" max="12" placeholder="Ex: 3">
+
+        <label for="an">An:</label>
+        <input type="number" id="an" min="1" placeholder="Ex: 2025">
+
+        <button onclick="calculeaza()">Calculează</button>
+
+        <div id="rezultat"></div>
+    </div>
+
+    <script>
+        function esteAnBisect(an) {
+            return (an % 4 === 0 && an % 100 !== 0) || (an % 400 === 0);
+        }
+
+        function zileInLuna(luna, an) {
+            const luni = [31, 28 + (esteAnBisect(an) ? 1 : 0), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            return luni[luna - 1];
+        }
+
+        function calculeaza() {
+            const zi = parseInt(document.getElementById('zi').value, 10);
+            const luna = parseInt(document.getElementById('luna').value, 10);
+            const an = parseInt(document.getElementById('an').value, 10);
+            const rezultat = document.getElementById('rezultat');
+
+            if (isNaN(zi) || isNaN(luna) || isNaN(an)) {
+                rezultat.innerHTML = '<span class="eroare">Completați toate câmpurile cu numere valide.</span>';
+                return;
+            }
+
+            if (luna < 1 || luna > 12) {
+                rezultat.innerHTML = '<span class="eroare">Luna trebuie să fie între 1 și 12.</span>';
+                return;
+            }
+
+            const maxZi = zileInLuna(luna, an);
+            if (zi < 1 || zi > maxZi) {
+                rezultat.innerHTML = '<span class="eroare">Zi invalidă pentru luna și anul specificate.</span>';
+                return;
+            }
+
+            let ziuaDinAn = zi;
+            for (let m = 1; m < luna; m++) {
+                ziuaDinAn += zileInLuna(m, an);
+            }
+
+            rezultat.textContent = `Data ${zi}.${luna}.${an} este ziua nr. ${ziuaDinAn} a anului.`;
+        }
+    </script>
+</body>
+</html>

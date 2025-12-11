@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Vector - Componenta maximă și poziții</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background: #f5f5f5;
+        }
+        h1 {
+            font-size: 20px;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            max-width: 600px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="number"],
+        input[type="text"] {
+            width: 100%;
+            padding: 6px 8px;
+            margin-top: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 15px;
+            padding: 8px 14px;
+            cursor: pointer;
+        }
+        #rezultat {
+            margin-top: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+            min-height: 30px;
+        }
+        .eroare {
+            color: #b00;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Componenta maximă și toate pozițiile ei</h1>
+
+    <label for="n">n (1 ≤ n ≤ 100):</label>
+    <input type="number" id="n" min="1" max="100" placeholder="Introdu numărul de elemente">
+
+    <label for="valori">Elementele vectorului (numere întregi separate prin spațiu):</label>
+    <input type="text" id="valori" placeholder="Ex: 3 -1 7 7 2">
+
+    <button onclick="calculeazaMaximul()">Calculează</button>
+
+    <div id="rezultat"></div>
+</div>
+
+<script>
+function calculeazaMaximul() {
+    const nInput = document.getElementById('n').value.trim();
+    const valoriInput = document.getElementById('valori').value.trim();
+    const rezultat = document.getElementById('rezultat');
+    rezultat.innerHTML = '';
+    rezultat.classList.remove('eroare');
+
+    const n = parseInt(nInput, 10);
+    if (isNaN(n) || n < 1 || n > 100) {
+        rezultat.textContent = 'n trebuie să fie un număr întreg între 1 și 100.';
+        rezultat.classList.add('eroare');
+        return;
+    }
+
+    if (!valoriInput) {
+        rezultat.textContent = 'Introdu elementele vectorului.';
+        rezultat.classList.add('eroare');
+        return;
+    }
+
+    const parts = valoriInput.split(/\s+/);
+    if (parts.length !== n) {
+        rezultat.textContent = 'Numărul de elemente introduse trebuie să fie exact ' + n + '.';
+        rezultat.classList.add('eroare');
+        return;
+    }
+
+    const v = [];
+    for (let i = 0; i < parts.length; i++) {
+        const x = parseInt(parts[i], 10);
+        if (isNaN(x)) {
+            rezultat.textContent = 'Toate elementele trebuie să fie numere întregi.';
+            rezultat.classList.add('eroare');
+            return;
+        }
+        v.push(x);
+    }
+
+    // Determinare componentă maximă
+    let max = v[0];
+    for (let i = 1; i < v.length; i++) {
+        if (v[i] > max) {
+            max = v[i];
+        }
+    }
+
+    // Determinare toate pozițiile maximei (indexare de la 1)
+    const pozitii = [];
+    for (let i = 0; i < v.length; i++) {
+        if (v[i] === max) {
+            pozitii.push(i + 1);
+        }
+    }
+
+    rezultat.innerHTML =
+        'Vectorul: [' + v.join(', ') + ']<br>' +
+        'Componenta maximă: <b>' + max + '</b><br>' +
+        'Pozițiile maximei (indexare de la 1): <b>' + pozitii.join(', ') + '</b>';
+}
+</script>
+</body>
+</html></div>

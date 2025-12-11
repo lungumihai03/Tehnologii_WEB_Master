@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Rotire text</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            gap: 1rem;
+        }
+        #textBox {
+            font-size: 2rem;
+            letter-spacing: 0.1rem;
+            min-height: 2.5rem;
+        }
+        button {
+            padding: 0.4rem 1rem;
+            cursor: pointer;
+        }
+        input {
+            padding: 0.3rem 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <input id="inputText" type="text" placeholder="Scrie aici textul..." />
+    <div id="textBox"></div>
+    <button id="rotateBtn">Rotește o poziție spre dreapta</button>
+
+    <script>
+        let text = "";
+        const textBox = document.getElementById("textBox");
+        const btn = document.getElementById("rotateBtn");
+        const input = document.getElementById("inputText");
+
+        input.addEventListener("input", () => {
+            text = input.value;
+            textBox.textContent = text;
+        });
+
+        function rotateRight(str) {
+            if (str.length <= 1) return str;
+            return str[str.length - 1] + str.slice(0, str.length - 1);
+        }
+
+        btn.addEventListener("click", () => {
+            if (!text) return;
+            text = rotateRight(text);
+            textBox.textContent = text;
+            input.value = text; 
+        });
+    </script>
+</body>
+</html>

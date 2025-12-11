@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Casete si focus/selectare</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .row { margin-bottom: 10px; }
+        label { margin-right: 10px; }
+        input[type="text"] { width: 250px; }
+    </style>
+</head>
+<body>
+    <h2>Casete de editare cu focus si selectare</h2>
+
+    <div class="row">
+        <label for="c1">Caseta 1 (c1):</label>
+        <input type="text" id="c1" value="Text in caseta 1">
+    </div>
+
+    <div class="row">
+        <label for="c2">Caseta 2 (c2):</label>
+        <input type="text" id="c2" value="Text in caseta 2">
+    </div>
+
+    <div class="row">
+        <label>
+            <input type="radio" name="caseta" id="r1" value="c1" checked>
+            caseta1
+        </label>
+        <label>
+            <input type="radio" name="caseta" id="r2" value="c2">
+            caseta2
+        </label>
+    </div>
+
+    <div class="row">
+        <button id="btnFocar">Focar</button>
+        <button id="btnSelectare">Selectare</button>
+    </div>
+
+    <script>
+        function getSelectedInput() {
+            const radios = document.getElementsByName("caseta");
+            let id = null;
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    id = radios[i].value;
+                    break;
+                }
+            }
+            if (!id) return null;
+            return document.getElementById(id);
+        }
+
+        document.getElementById("btnFocar").addEventListener("click", function () {
+            const input = getSelectedInput();
+            if (input) {
+                input.focus();
+            }
+        });
+
+        document.getElementById("btnSelectare").addEventListener("click", function () {
+            const input = getSelectedInput();
+            if (input) {
+                input.focus();      // optional, ca sa fie clar ce caseta este activa
+                input.select();     // selecteaza continutul casetei
+            }
+        });
+    </script>
+</body>
+</html>

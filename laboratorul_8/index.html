@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Filtru alb-negru</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        canvas { border: 1px solid #333; display: block; margin-top: 10px; }
+        #controls { margin-bottom: 10px; }
+        button { margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Filtru alb-negru (canvas)</h1>
+
+    <div id="controls">
+        <input type="file" id="fileInput" accept="image/*">
+        <button id="bwBtn" disabled>Transformă în alb-negru</button>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const bwBtn = document.getElementById('bwBtn');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        let imgLoaded = false;
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const img = new Image();
+                img.onload = function() {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                    imgLoaded = true;
+                    bwBtn.disabled = false;
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        bwBtn.addEventListener('click', () => {
+            if (!imgLoaded) return;
+
+            const width = canvas.width;
+            const height = canvas.height;
+
+            const imageData = ctx.getImageData(0, 0, width, height);
+            const data = imageData.data;
+
+            for (let i = 0; i < data.length; i += 4) {
+                const r = data[i];    
+                const g = data[i + 1]; 
+                const b = data[i + 2]; 
+
+                const avg = (r + g + b) / 3;
+
+                // Setăm toți cei 3 canali la media calculată
+                data[i]     = avg; // R
+                data[i + 1] = avg; // G
+                data[i + 2] = avg; // B
+                // data[i + 3] = A (alfa) - nu modificăm transparența
+            }
+
+            // Punem înapoi pixelii modificați în canvas
+            ctx.putImageData(imageData, 0, 0);
+        });
+    </script>
+</body>
+</html>
