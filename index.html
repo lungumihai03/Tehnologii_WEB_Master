@@ -1,134 +1,159 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8" />
-  <title>Laboratoare</title>
+  
+  <title>Laboratoare Mihai Lungu</title>
+  <link rel="icon" type="image/x-icon" href="https://media.mihailungu.com/resources/images/poza.jpg">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
     body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 20px;
     }
-
-    .container {
-      max-width: 700px;
-      width: 100%;
-      padding: 24px;
-      background: rgba(0, 0, 0, 0.25);
-      border-radius: 16px;
-      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(10px);
-    }
-
     h1 {
-      text-align: center;
-      margin-top: 0;
-      margin-bottom: 8px;
-      font-size: 28px;
+      color: #333;
     }
-
-    p {
-      text-align: center;
-      margin-top: 0;
-      margin-bottom: 20px;
-      opacity: 0.9;
+    .row {
+      margin-top: 20px;
     }
-
-    .buttons-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 12px;
-    }
-
-    button.lab-btn {
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: none;
-      background: #ffffff;
-      color: #1e3c72;
-      font-weight: 600;
+    button {
+      margin: 5px;
+      padding: 5px 10px;
+      font-size: 16px;
       cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
-        color 0.15s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-      width: 100%;
     }
-
-    button.lab-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-      background: #ffe082;
-      color: #1b2735;
-    }
-
-    button.lab-btn:active {
-      transform: translateY(0);
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 18px;
-      font-size: 12px;
-      opacity: 0.85;
-    }
-
-    .footer code {
-      background: rgba(255,255,255,0.15);
-      padding: 2px 5px;
-      border-radius: 4px;
+    .test{
+      background-color: blue;
+      height: 100vh;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Lista de laboratoare</h1>
-    <p>Alege laboratorul la care vrei să mergi.</p>
+  <center>
+    <h1>Laboratoare Mihai Lungu</h1>
+    <h3>Tehnologii Web Master</h3>
+    <br>
+  </center>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-3">
+            <button class="lab">Laboratorul 1</button>
+          </div>
+          <div class="col-md-3">
+            <button class="download">Descarcă</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <button class="lab">Laboratorul 2</button>
+          </div>
+          <div class="col-md-3">
+            <button class="download">Descarcă</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <button class="lab">Laboratorul 3</button>
+          </div>
+          <div class="col-md-3">
+            <button class="download">Descarcă</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <button class="lab">Laboratorul 4</button>
+          </div>
+          <div class="col-md-3">
+            <button class="download">Descarcă</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <button class="lab">Laboratorul 5</button>
+          </div>
+          <div class="col-md-3">
+            <button class="download">Descarcă</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <button class="lab">Laboratorul 6</button>
+          </div>
+          <div class="col-md-3">
+            <button class="download">Descarcă</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <button class="lab">Laboratorul 7</button>
+          </div>
+          <div class="col-md-3">
+            <button class="download">Descarcă</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <button class="lab">Laboratorul 8</button>
+          </div>
+          <div class="col-md-3">
+            <button class="download">Descarcă</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <button class="lab">Laboratorul 9</button>
+          </div>
+          <div class="col-md-3">
+            <button class="download">Descarcă</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <button class="lab">Laboratorul 10</button>
+          </div>
+          <div class="col-md-3">
+            <button class="download">Descarcă</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <button class="lab">Laboratorul 11</button>
+          </div>
+          <div class="col-md-3">
+            <button class="download">Descarcă</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <button class="lab">Laboratorul 12</button>
+          </div>
+          <div class="col-md-3">
+            <button class="download">Descarcă</button>
+          </div>
+        </div>
+<script>
+          window.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.lab');
+            const iframe = document.querySelector('iframe');
+            buttons.forEach(button => {
+              button.addEventListener('click', () => {
+                const labNumber = button.textContent.split(' ')[1];
+                iframe.src = `laboratorul_${labNumber}/index.html`;
+              });
+            });
+          });
+        </script>
 
-    <div class="buttons-grid" id="labs-container">
-      <!-- Butoanele vor fi generate din JavaScript -->
     </div>
-
- 
+    <div class="col-md-7 test">
+      <iframe></iframe>
+    </div>
+    <div class="col-md-1"></div>
   </div>
-
-  <script>
-    // Numărul de laboratoare
-    const NUMAR_LABORATOARE = 12;
-
-    const container = document.getElementById("labs-container");
-
-    for (let i = 1; i <= NUMAR_LABORATOARE; i++) {
-      const btn = document.createElement("button");
-      btn.className = "lab-btn";
-      btn.textContent = "Laboratorul " + i;
-
-      // Pentru lab 1-8: doar folderul
-      // Pentru lab 9-12: folder + index.php
-      const folderName = "laboratorul_" + i + "/";
-      let targetUrl;
-
-      if ( i >= 9 && i <= 12 ) {
-        targetUrl = folderName + "index.php";
-      } else {
-        targetUrl = folderName;
-      }
-
-      btn.addEventListener("click", () => {
-        window.location.href = targetUrl;
-      });
-
-      container.appendChild(btn);
-    }
-  </script>
 </body>
 </html>
