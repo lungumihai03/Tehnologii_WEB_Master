@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Laboratoare</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+    }
+
+    .container {
+      max-width: 700px;
+      width: 100%;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 16px;
+      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 28px;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+    }
+
+    button.lab-btn {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: none;
+      background: #ffffff;
+      color: #1e3c72;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
+        color 0.15s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      width: 100%;
+    }
+
+    button.lab-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      background: #ffe082;
+      color: #1b2735;
+    }
+
+    button.lab-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 12px;
+      opacity: 0.85;
+    }
+
+    .footer code {
+      background: rgba(255,255,255,0.15);
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Lista de laboratoare</h1>
+    <p>Alege laboratorul la care vrei să mergi.</p>
+
+    <div class="buttons-grid" id="labs-container">
+      <!-- Butoanele vor fi generate din JavaScript -->
+    </div>
+
+    
+  </div>
+
+  <script>
+    // Numărul de laboratoare
+    const NUMAR_LABORATOARE = 12;
+
+    const container = document.getElementById("labs-container");
+
+    for (let i = 1; i <= NUMAR_LABORATOARE; i++) {
+      const btn = document.createElement("button");
+      btn.className = "lab-btn";
+      btn.textContent = "Laboratorul " + i;
+
+      // La click, mergi în folderul laboratorului
+      const folderName = "laboratorul_" + i + "/";
+      btn.addEventListener("click", () => {
+        window.location.href = folderName;
+      });
+
+      container.appendChild(btn);
+    }
+  </script>
+</body>
+</html>
